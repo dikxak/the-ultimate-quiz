@@ -1,5 +1,38 @@
-@use "../abstracts/mixins" as *;
+@use "../abstracts/index.scss" as *;
+
+.game-heading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2.25rem;
+  gap: 1rem;
+  perspective: 62.5rem;
+
+  img {
+    height: 3rem;
+    width: 3rem;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    animation: rotate 0.8s linear infinite alternate-reverse;
+  }
+
+  h1 {
+    font-family: $app-heading-font-family;
+    letter-spacing: 0.1563rem;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+}
 
 .grid--3-cols {
   @include grid(3, 1fr, center, 1rem, 1rem, center);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(180deg);
+  }
 }
