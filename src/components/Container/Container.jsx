@@ -4,10 +4,10 @@ const Container = ({ children, className }) => (
   <div className={`container ${className}`}>{children}</div>
 );
 
-Container.defaultProps = { children: [<></>], className: "" };
+Container.defaultProps = { className: "" };
 
 Container.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
   className: PropTypes.string,
 };
 
