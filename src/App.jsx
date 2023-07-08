@@ -1,5 +1,7 @@
+import Container from "components/Container/Container";
+
 const App = () => {
-  return <h1>The Ultimate Quiz</h1>;
+  return <Container>The Ultimate Quiz</Container>;
 };
 
 export default App;
