@@ -1,8 +1,14 @@
 import PropTypes from "prop-types";
 
-const Container = ({ children }) => <div className="container">{children}</div>;
+const Container = ({ children, className }) => (
+  <div className={`container ${className}`}>{children}</div>
+);
 
-Container.defaultProps = { children: <></> };
-Container.propTypes = { children: PropTypes.element };
+Container.defaultProps = { children: [<></>], className: "" };
+
+Container.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.element),
+  className: PropTypes.string,
+};
 
 export default Container;

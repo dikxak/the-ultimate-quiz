@@ -1,7 +1,7 @@
-import Container from "components/Container/Container";
+import MainApp from "pages/MainApp/MainApp";
 
 const App = () => {
-  return <Container>The Ultimate Quiz</Container>;
+  return <MainApp />;
 };
 
 export default App;

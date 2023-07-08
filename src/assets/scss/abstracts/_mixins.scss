@@ -1,0 +1,15 @@
+@mixin grid(
+  $columns: 1,
+  $fraction: 1fr,
+  $align-items: start,
+  $row-gap: 0,
+  $column-gap: 0,
+  $justify-items: start
+) {
+  display: grid;
+  grid-template-columns: repeat($columns, $fraction);
+  align-items: $align-items;
+  row-gap: $row-gap;
+  column-gap: $column-gap;
+  justify-items: $justify-items;
+}

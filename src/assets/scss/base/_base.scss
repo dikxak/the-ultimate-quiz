@@ -1,0 +1,5 @@
+@use "../abstracts/mixins" as *;
+
+.grid--3-cols {
+  @include grid(3, 1fr, center, 1rem, 1rem, center);
+}
