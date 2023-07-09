@@ -4,11 +4,11 @@ import buttonClick from "assets/sounds/button-click.mp3";
 import Container from "components/Container/Container";
 import QuizCategory from "components/CategoryMenu/QuizCategory";
 
-import { CATEGORIES } from "constants/mainApp";
+import { CATEGORIES } from "constants/categoryMenu";
 
 import playGameSound from "utils/playGameSound";
 
-const MainApp = () => {
+const CategoryMenu = () => {
   const handleMouseClick = () => {
     playGameSound(buttonClick);
   };
@@ -32,4 +32,4 @@ const MainApp = () => {
   );
 };
 
-export default MainApp;
+export default CategoryMenu;
