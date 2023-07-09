@@ -18,8 +18,10 @@
 .game-heading-container {
   @include flex(center, center);
 
-  margin-bottom: 2rem;
   gap: 1rem;
+
+  margin-bottom: 2rem;
+
   perspective: 62.5rem;
 
   img {
