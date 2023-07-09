@@ -8,7 +8,7 @@ import { CATEGORIES } from "constants/mainApp";
 import mouseOverSound from "assets/sounds/mouse-over.mp3";
 
 const MainApp = () => {
-  const handleMouseEnter = () => {
+  const handleMouseOver = () => {
     const sound = new Howl({
       src: [mouseOverSound],
     });
@@ -20,7 +20,7 @@ const MainApp = () => {
     <Container className="grid--3-cols">
       {CATEGORIES.map(({ icon, label }) => (
         <QuizCategory
-          onMouseEnter={handleMouseEnter}
+          onMouseOver={handleMouseOver}
           key={label}
           icon={icon}
           label={label}

@@ -33,7 +33,7 @@
     transition: all 0.35s;
     z-index: -1;
 
-    cursor: none;
+    pointer-events: none;
   }
 
   &:hover::after {

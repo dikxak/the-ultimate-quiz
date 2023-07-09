@@ -1,15 +1,15 @@
 import PropTypes from "prop-types";
 
-const QuizCategory = ({ icon, label, onMouseEnter }) => {
+const QuizCategory = ({ icon, label, onMouseOver }) => {
   return (
     <div
-      onMouseEnter={onMouseEnter}
+      onMouseOver={onMouseOver}
       className="quiz-category"
       role="button"
       tabIndex={1}
     >
-      <img src={icon} alt={label} />
-      <span>{label}</span>
+      <img className="pe-none" src={icon} alt={label} />
+      <span className="pe-none">{label}</span>
     </div>
   );
 };
@@ -17,7 +17,7 @@ const QuizCategory = ({ icon, label, onMouseEnter }) => {
 QuizCategory.propTypes = {
   icon: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
+  onMouseOver: PropTypes.func.isRequired,
 };
 
 export default QuizCategory;
