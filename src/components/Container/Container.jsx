@@ -7,7 +7,7 @@ const Container = ({ children, className }) => (
 Container.defaultProps = { className: "" };
 
 Container.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  children: PropTypes.any.isRequired,
   className: PropTypes.string,
 };
 

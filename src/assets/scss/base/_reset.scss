@@ -21,6 +21,10 @@ img {
 button {
   display: inline-block;
   border: none;
+  cursor: pointer;
+
+  font: inherit;
+  color: inherit;
 }
 
 input:focus {

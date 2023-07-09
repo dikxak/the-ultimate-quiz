@@ -40,6 +40,48 @@
   }
 }
 
+.btn {
+  transition: all 0.35s;
+
+  &-pill {
+    border-radius: 10rem;
+  }
+
+  &-primary {
+    background-color: $primary-shade-1;
+    border: 0.0625rem solid $primary-shade-1;
+  }
+
+  &-outline {
+    border: 0.0625rem solid $white;
+    background: transparent;
+
+    &:hover {
+      background-color: $primary-tint-1;
+      border: 0.0625rem solid $primary-tint-1;
+    }
+  }
+
+  &-large {
+    padding: 1.5rem 2rem;
+    font-size: 2rem;
+  }
+
+  &-medium {
+    padding: 1rem 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  &-small {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
 .grid--3-cols {
   @include grid(3, 1fr, center, 1rem, 1rem, center);
 }
