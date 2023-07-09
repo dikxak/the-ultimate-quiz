@@ -1,3 +1,7 @@
+// General Colors
+$white: #ffffff;
+$black: #000000;
+
 // Main App Colors
 $primary-color: #352969;
 $secondary-color: #cf8c3a;
@@ -7,10 +11,15 @@ $primary-tint-1: #5d5487;
 
 $primary-shade-1: #383251;
 
-// General Colors
-$white: #ffffff;
-$black: #000000;
-
 // Font related styles
 $app-font-family: "Exo", sans-serif;
 $app-heading-font-family: "Luckiest Guy", cursive;
+
+// Game container styles
+$container-width: 56.25rem;
+$container-height: 39.0625rem;
+$container-box-shadow: 0 0.625rem 0.5rem rgba($black, 0.1);
+
+// Other styles
+$border-radius-large: 0.625rem;
+$border-radius-small: 0.5rem;

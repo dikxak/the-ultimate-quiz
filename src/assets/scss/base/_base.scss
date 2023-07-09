@@ -1,16 +1,30 @@
 @use "../abstracts/index.scss" as *;
 
+/*
+--- 01 TYPOGRAPHY SYSTEM
+
+- Font sizes (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+- Letter spacing (px)
+    - Large -> 1.5
+
+--- 02 WHITESPACE
+
+- Spacing system (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
+
 .game-heading-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 2.25rem;
+  @include flex(center, center);
+
+  margin-bottom: 2rem;
   gap: 1rem;
   perspective: 62.5rem;
 
   img {
-    height: 3rem;
-    width: 3rem;
+    @include size(3rem, 3rem);
+
     transition: transform 0.6s;
     transform-style: preserve-3d;
     animation: rotate 0.8s linear infinite alternate-reverse;
@@ -18,7 +32,7 @@
 
   h1 {
     font-family: $app-heading-font-family;
-    letter-spacing: 0.1563rem;
+    letter-spacing: 0.0938rem;
     text-transform: uppercase;
     margin-top: 0.5rem;
   }

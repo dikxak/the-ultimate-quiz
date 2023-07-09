@@ -1,18 +1,17 @@
-@use "../abstracts/variables" as *;
+@use "../abstracts/index.scss" as *;
 
 .quiz-category {
-  width: 10.9375rem;
-  height: 9.375rem;
-  background-color: $tertiary-color;
-  border-radius: 0.5rem;
-  position: relative;
-  cursor: pointer;
+  @include size(10.9375rem, 9.375rem);
+  @include position($position: relative);
+  @include flex(center, center);
 
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.75rem;
+  gap: 2rem;
+
+  background-color: $tertiary-color;
+  border-radius: $border-radius-small;
+
+  cursor: pointer;
 
   img {
     height: 3.75rem;
@@ -26,16 +25,12 @@
   &::after {
     content: "";
 
-    width: 100%;
-    height: 100%;
-    border-radius: 0.5rem;
+    @include size();
+    @include position(absolute, 1rem, $left: 1rem);
 
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    transition: all 0.35s;
-
+    border-radius: $border-radius-small;
     background-color: rgba($tertiary-color, 0.5);
+    transition: all 0.35s;
     z-index: -1;
 
     cursor: none;

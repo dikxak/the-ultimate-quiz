@@ -1,12 +1,13 @@
 @use "../abstracts/variables" as *;
 
 .container {
-  width: 56.25rem;
-  height: 39.0625rem;
+  width: $container-width;
+  height: $container-height;
   background-color: $primary-tint-1;
-  border-radius: 0.625rem;
-  box-shadow: 0 0.625rem 0.5rem rgba($black, 0.1);
-  padding: 1.125rem;
+  border-radius: $border-radius-large;
+  box-shadow: $container-box-shadow;
+
+  padding: 1rem;
   position: relative;
   z-index: 1;
 }
