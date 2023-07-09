@@ -2,7 +2,7 @@ import mouseOverSound from "assets/sounds/mouse-over.mp3";
 import buttonClick from "assets/sounds/button-click.mp3";
 
 import Container from "components/Container/Container";
-import QuizCategory from "components/MainApp/QuizCategory";
+import QuizCategory from "components/CategoryMenu/QuizCategory";
 
 import { CATEGORIES } from "constants/mainApp";
 

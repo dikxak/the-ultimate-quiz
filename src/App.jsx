@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import MainApp from "pages/MainApp/MainApp";
+import CategoryMenu from "pages/CategoryMenu/CategoryMenu";
 import StartGameButton from "components/Button/StartGameButton";
 
 import puzzle from "assets/icons/puzzle.svg";
@@ -20,7 +20,7 @@ const App = () => {
         setIsGameStarted={setIsGameStarted}
       />
 
-      {isGameStarted && <MainApp />}
+      {isGameStarted && <CategoryMenu />}
     </>
   );
 };
