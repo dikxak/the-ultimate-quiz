@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import CategoryMenu from "@/views/CategoryMenu/CategoryMenu";
 import Settings from "@/views/Settings/Settings";
+import Loading from "@/views/Loading/Loading";
 
 const GameView = ({ isGameStarted }) => {
   const { currentView } = useSelector(state => state.view);
@@ -15,6 +16,8 @@ const GameView = ({ isGameStarted }) => {
       return <CategoryMenu />;
     case "setting":
       return <Settings />;
+    case "loading":
+      return <Loading />;
     default:
       return null;
   }

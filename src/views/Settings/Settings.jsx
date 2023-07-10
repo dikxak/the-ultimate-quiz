@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+
 import Container from "@/components/Container/Container";
 import Button from "@/components/Button/Button";
 import Select from "@/components/Select/Select";
@@ -11,10 +13,15 @@ import playGameSound from "@/utils/playGameSound";
 import { QUESTION_NUMBERS_OPTIONS } from "@/constants/settings";
 import { DIFFICULTY_LEVELS } from "@/constants/settings";
 
+import { viewActions } from "@/store/slices/view";
+
 const Settings = () => {
+  const dispatch = useDispatch();
+
   const handleFormSubmit = e => {
     e.preventDefault();
 
+    dispatch(viewActions.updateView("loading"));
     playGameSound(buttonClick);
   };
 

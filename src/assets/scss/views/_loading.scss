@@ -1,0 +1,59 @@
+@use "../abstracts/index.scss" as *;
+
+.loader-container {
+  @include flex(center, center, $flex-direction: column, $gap: 2rem);
+
+  .loader {
+    @include size(3.125rem, 3.125rem);
+
+    position: relative;
+    background-color: $white;
+
+    border-radius: 50%;
+
+    animation: animate 0.75s infinite linear alternate;
+
+    animation-delay: 0.5s;
+
+    &::before,
+    &::after {
+      content: "";
+
+      @include size();
+
+      position: absolute;
+      background-color: $white;
+
+      border-radius: 50%;
+
+      animation: animate 0.75s infinite alternate;
+    }
+
+    &::before {
+      right: 150%;
+      animation-delay: 0s;
+    }
+
+    &::after {
+      left: 150%;
+      animation-delay: 1s;
+    }
+  }
+
+  .loading-text {
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.0313rem;
+    text-transform: uppercase;
+  }
+}
+
+@keyframes animate {
+  0% {
+    background-color: $white;
+  }
+  50%,
+  100% {
+    background-color: rgba($white, 0.2);
+  }
+}
