@@ -18,15 +18,19 @@ img {
   width: 100%;
 }
 
-button {
+button,
+select {
   display: inline-block;
-  border: none;
-  cursor: pointer;
-
   font: inherit;
   color: inherit;
+  border: none;
 }
 
-input:focus {
+button {
+  cursor: pointer;
+}
+
+input:focus,
+select:focus {
   outline: none;
 }

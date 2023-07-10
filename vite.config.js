@@ -1,5 +1,10 @@
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import url from "url";
+import path from "path";
+
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   plugins: [react()],
@@ -7,13 +12,8 @@ export default defineConfig({
     port: "3000",
   },
   resolve: {
-    alias: [
-      { find: "apis", replacement: "/src/apis" },
-      { find: "assets", replacement: "/src/assets" },
-      { find: "components", replacement: "/src/components" },
-      { find: "constants", replacement: "/src/constants" },
-      { find: "pages", replacement: "/src/pages" },
-      { find: "utils", replacement: "/src/utils" },
-    ],
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
   },
 });

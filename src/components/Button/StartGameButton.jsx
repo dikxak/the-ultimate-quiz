@@ -2,13 +2,13 @@ import PropTypes from "prop-types";
 
 import Button from "./Button";
 
-const StartGameButton = ({ isGameStarted, setIsGameStarted }) => {
+const StartGameButton = ({ isGameStarted, onGameStart }) => {
   if (isGameStarted) return null;
 
   return (
     <div className="text-center">
       <Button
-        onClick={() => setIsGameStarted(true)}
+        onClick={onGameStart}
         className="text-center"
         isPill
         variant="outline"
@@ -22,7 +22,7 @@ const StartGameButton = ({ isGameStarted, setIsGameStarted }) => {
 
 StartGameButton.propTypes = {
   isGameStarted: PropTypes.bool.isRequired,
-  setIsGameStarted: PropTypes.func.isRequired,
+  onGameStart: PropTypes.func.isRequired,
 };
 
 export default StartGameButton;

@@ -1,0 +1,44 @@
+@use "../abstracts/index.scss" as *;
+
+.settings-container {
+  @include flex(center);
+
+  padding-top: 4rem;
+
+  form {
+    width: 90%;
+
+    @include flex(
+      $justify-content: center,
+      $flex-direction: column,
+      $gap: 4rem
+    );
+
+    .form-group {
+      @include flex(space-between, center, row, 6rem);
+
+      align-self: stretch;
+
+      & > div {
+        @include flex($align-items: center, $gap: 1rem);
+      }
+
+      span {
+        font-size: 1.75rem;
+        font-weight: 600;
+      }
+
+      select {
+        width: 35%;
+      }
+
+      img {
+        @include size(2.25rem, 2.25rem);
+      }
+    }
+
+    button {
+      align-self: flex-end;
+    }
+  }
+}

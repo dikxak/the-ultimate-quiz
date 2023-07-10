@@ -1,0 +1,8 @@
+@use "../abstracts/variables" as *;
+
+.select {
+  padding: 0.5rem 2rem;
+  font-size: 1.25rem;
+  border-radius: 0.5rem;
+  background-color: $primary-shade-1;
+}

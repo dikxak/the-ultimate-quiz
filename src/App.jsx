@@ -1,12 +1,23 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
-import CategoryMenu from "pages/CategoryMenu/CategoryMenu";
-import StartGameButton from "components/Button/StartGameButton";
+import StartGameButton from "@/components/Button/StartGameButton";
+import GameView from "@/views/GameView/GameView";
 
-import puzzle from "assets/icons/puzzle.svg";
+import puzzle from "@/assets/icons/puzzle.svg";
+
+import { viewActions } from "@/store/slices/view";
 
 const App = () => {
+  const dispatch = useDispatch();
+
   const [isGameStarted, setIsGameStarted] = useState(false);
+
+  const handleGameStart = () => {
+    dispatch(viewActions.updateView("category"));
+
+    setIsGameStarted(true);
+  };
 
   return (
     <>
@@ -17,10 +28,10 @@ const App = () => {
 
       <StartGameButton
         isGameStarted={isGameStarted}
-        setIsGameStarted={setIsGameStarted}
+        onGameStart={handleGameStart}
       />
 
-      {isGameStarted && <CategoryMenu />}
+      <GameView isGameStarted={isGameStarted} />
     </>
   );
 };
