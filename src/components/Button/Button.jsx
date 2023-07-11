@@ -28,7 +28,12 @@ const Button = ({
   );
 };
 
-Button.defaultProps = { isPill: true, className: "", type: "button" };
+Button.defaultProps = {
+  isPill: true,
+  className: "",
+  type: "button",
+  onClick: () => {},
+};
 
 Button.propTypes = {
   isPill: PropTypes.bool,
@@ -36,7 +41,7 @@ Button.propTypes = {
   variant: PropTypes.string.isRequired,
   size: PropTypes.string.isRequired,
   className: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   type: PropTypes.string,
 };
 
