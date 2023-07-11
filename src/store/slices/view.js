@@ -7,8 +7,27 @@ const viewSlice = createSlice({
   initialState: INITIAL_VIEWS,
   reducers: {
     updateView(state, action) {
+      state.viewCount++;
       state.previousView = state.currentView;
       state.currentView = action.payload;
+    },
+    updateViewOnBack(state) {
+      state.currentView = state.previousView;
+      state.viewCount--;
+
+      switch (state.previousView) {
+        case "loading":
+          state.previousView = "setting";
+          break;
+        case "setting":
+          state.previousView = "category";
+          break;
+        case "category":
+          state.previousView = null;
+          break;
+        default:
+          state.previousView = null;
+      }
     },
   },
 });

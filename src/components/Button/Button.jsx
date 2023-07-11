@@ -33,13 +33,14 @@ Button.defaultProps = {
   className: "",
   type: "button",
   onClick: () => {},
+  variant: "",
 };
 
 Button.propTypes = {
   isPill: PropTypes.bool,
   children: PropTypes.any.isRequired,
-  variant: PropTypes.string.isRequired,
   size: PropTypes.string.isRequired,
+  variant: PropTypes.string,
   className: PropTypes.string,
   onClick: PropTypes.func,
   type: PropTypes.string,
