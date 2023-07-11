@@ -11,13 +11,15 @@ import { CATEGORIES } from "@/constants/categoryMenu";
 import playGameSound from "@/utils/playGameSound";
 
 import { viewActions } from "@/store/slices/view";
+import { configActions } from "@/store/slices/config";
 
 const CategoryMenu = () => {
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleClick = category => {
     playGameSound(buttonClick);
     dispatch(viewActions.updateView("setting"));
+    dispatch(configActions.updateConfig({ category: category.toLowerCase() }));
   };
 
   const handleMouseOver = () => {
@@ -28,7 +30,7 @@ const CategoryMenu = () => {
     <Container className="grid--3-cols">
       {CATEGORIES.map(({ icon, label }) => (
         <QuizCategory
-          onClick={handleClick}
+          onClick={handleClick.bind(null, label)}
           onMouseOver={handleMouseOver}
           key={label}
           icon={icon}

@@ -7,6 +7,9 @@ import Button from "@/components/Button/Button";
 import GameView from "@/views/GameView/GameView";
 
 import puzzle from "@/assets/icons/puzzle.svg";
+import buttonClick from "@/assets/sounds/button-click.mp3";
+
+import playGameSound from "@/utils/playGameSound";
 
 import { viewActions } from "@/store/slices/view";
 
@@ -24,6 +27,8 @@ const App = () => {
 
   const handleBack = () => {
     dispatch(viewActions.updateViewOnBack());
+
+    playGameSound(buttonClick);
   };
 
   const gameHeadingClassName = viewCount > 1 ? "mr-auto" : "";

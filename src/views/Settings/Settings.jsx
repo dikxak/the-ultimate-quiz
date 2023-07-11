@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import Container from "@/components/Container/Container";
@@ -12,17 +13,38 @@ import playGameSound from "@/utils/playGameSound";
 
 import { QUESTION_NUMBERS_OPTIONS } from "@/constants/settings";
 import { DIFFICULTY_LEVELS } from "@/constants/settings";
+import { INITIAL_CONFIG_VALUES } from "@/constants/config";
 
 import { viewActions } from "@/store/slices/view";
+import { configActions } from "@/store/slices/config";
 
 const Settings = () => {
   const dispatch = useDispatch();
+
+  const [questionsLength, setQuestionsLength] = useState(
+    INITIAL_CONFIG_VALUES.QUESTIONS_LENGTH
+  );
+  const [difficultyLevel, setDifficultyLevel] = useState(
+    INITIAL_CONFIG_VALUES.DIFFICULTY_LEVEL
+  );
 
   const handleFormSubmit = e => {
     e.preventDefault();
 
     dispatch(viewActions.updateView("loading"));
+    dispatch(configActions.updateConfig({ questionsLength, difficultyLevel }));
+
     playGameSound(buttonClick);
+  };
+
+  const questionsLengthChangeHandler = e => {
+    setQuestionsLength(e.target.value);
+  };
+
+  const difficultyLevelChangeHandler = e => {
+    const difficultyLevelLowerCase = e.target.value.toLowerCase();
+
+    setDifficultyLevel(difficultyLevelLowerCase);
   };
 
   return (
@@ -35,6 +57,7 @@ const Settings = () => {
           </div>
 
           <Select
+            onChange={questionsLengthChangeHandler}
             name="number-of-questions"
             id="number-of-questions"
             options={QUESTION_NUMBERS_OPTIONS}
@@ -48,6 +71,7 @@ const Settings = () => {
           </div>
 
           <Select
+            onChange={difficultyLevelChangeHandler}
             name="difficulty-level"
             id="difficulty-level"
             options={DIFFICULTY_LEVELS}
