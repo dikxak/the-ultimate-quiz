@@ -1,0 +1,22 @@
+@use "../abstracts/index.scss" as *;
+
+.outer-bar {
+  @include size(43.75rem, 1.5625rem);
+
+  border-radius: 6.25rem;
+  background-color: $white;
+
+  position: relative;
+  overflow: hidden;
+
+  margin-bottom: 1rem;
+
+  .inner-bar {
+    position: absolute;
+
+    @include size();
+
+    background-color: $secondary-color;
+    border-radius: 6.25rem;
+  }
+}

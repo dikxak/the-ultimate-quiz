@@ -1,0 +1,19 @@
+@use "../abstracts/index.scss" as *;
+
+.quiz-container {
+  @include flex(center, center, $flex-direction: column);
+
+  .quiz-footer {
+    @include flex(space-between, center);
+
+    width: 95%;
+
+    .quiz-timer {
+      font-size: 1.25rem;
+
+      padding: 0.5rem 3rem;
+      border-radius: 6.25rem;
+      background-color: $primary-shade-1;
+    }
+  }
+}
