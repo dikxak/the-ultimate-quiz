@@ -1,5 +1,6 @@
 import { viewActions } from "@/store/slices/view";
 import { configActions } from "@/store/slices/config";
+import { quizActions } from "@/store/slices/quiz";
 
 import { fetchQuestions } from "@/apis/api";
 
@@ -16,10 +17,9 @@ export const fetchQuizQuestions = quizConfig => {
       const quizQuestions = await fetchQuestions(quizConfig);
 
       dispatch(viewActions.updateView("quiz"));
-
-      console.log(quizQuestions);
+      dispatch(quizActions.updateQuiz(quizQuestions));
     } catch (errors) {
-      console.error(errors);
+      // TODO: Handle error logic
     }
   };
 };
