@@ -10,38 +10,47 @@ import animal from "@/assets/icons/animal.svg";
 
 export const CATEGORIES = [
   {
+    openTriviaId: 18,
     icon: computer,
     label: "Computer",
   },
   {
+    openTriviaId: 11,
     icon: movie,
     label: "Movie",
   },
   {
+    openTriviaId: 10,
     icon: book,
     label: "Book",
   },
   {
+    openTriviaId: 12,
     icon: music,
     label: "Music",
   },
   {
+    openTriviaId: 14,
     icon: television,
     label: "Television",
   },
   {
+    openTriviaId: 15,
     icon: videoGame,
     label: "Video Game",
   },
   {
+    openTriviaId: 21,
     icon: sport,
     label: "Sport",
   },
   {
+    openTriviaId: 23,
     icon: history,
     label: "History",
   },
   {
+    openTriviaId: 27,
     icon: animal,
     label: "Animal",
   },

@@ -16,10 +16,10 @@ import { configActions } from "@/store/slices/config";
 const CategoryMenu = () => {
   const dispatch = useDispatch();
 
-  const handleClick = category => {
+  const handleClick = ({ categoryId, category }) => {
     playGameSound(buttonClick);
     dispatch(viewActions.updateView("setting"));
-    dispatch(configActions.updateConfig({ category: category.toLowerCase() }));
+    dispatch(configActions.updateConfig({ categoryId, category }));
   };
 
   const handleMouseOver = () => {
@@ -28,9 +28,12 @@ const CategoryMenu = () => {
 
   return (
     <Container className="grid--3-cols">
-      {CATEGORIES.map(({ icon, label }) => (
+      {CATEGORIES.map(({ icon, label, openTriviaId }) => (
         <QuizCategory
-          onClick={handleClick.bind(null, label)}
+          onClick={handleClick.bind(null, {
+            categoryId: openTriviaId,
+            category: label.toLowerCase(),
+          })}
           onMouseOver={handleMouseOver}
           key={label}
           icon={icon}

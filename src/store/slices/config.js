@@ -7,8 +7,10 @@ const configSlice = createSlice({
   initialState: INITIAL_CONFIG,
   reducers: {
     updateConfig(state, action) {
-      const { category, questionsLength, difficultyLevel } = action.payload;
+      const { categoryId, category, questionsLength, difficultyLevel } =
+        action.payload;
 
+      state.categoryId = categoryId || state.categoryId;
       state.category = category || state.category;
       state.questionsLength = questionsLength || state.questionsLength;
       state.difficultyLevel = difficultyLevel || state.difficultyLevel;

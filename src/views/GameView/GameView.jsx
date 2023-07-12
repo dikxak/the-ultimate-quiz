@@ -12,8 +12,6 @@ const GameView = ({ isGameStarted }) => {
 
   if (!isGameStarted) return null;
 
-  return <Quiz />;
-
   switch (currentView) {
     case "category":
       return <CategoryMenu />;
@@ -21,6 +19,8 @@ const GameView = ({ isGameStarted }) => {
       return <Settings />;
     case "loading":
       return <Loading />;
+    case "quiz":
+      return <Quiz />;
     default:
       return null;
   }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Container from "@/components/Container/Container";
 import Button from "@/components/Button/Button";
@@ -15,11 +15,12 @@ import { QUESTION_NUMBERS_OPTIONS } from "@/constants/settings";
 import { DIFFICULTY_LEVELS } from "@/constants/settings";
 import { INITIAL_CONFIG_VALUES } from "@/constants/config";
 
-import { viewActions } from "@/store/slices/view";
-import { configActions } from "@/store/slices/config";
+import { fetchQuizQuestions } from "@/store/actions/quizActions";
 
 const Settings = () => {
   const dispatch = useDispatch();
+
+  const { categoryId } = useSelector(state => state.config);
 
   const [questionsLength, setQuestionsLength] = useState(
     INITIAL_CONFIG_VALUES.QUESTIONS_LENGTH
@@ -31,8 +32,9 @@ const Settings = () => {
   const handleFormSubmit = e => {
     e.preventDefault();
 
-    dispatch(viewActions.updateView("loading"));
-    dispatch(configActions.updateConfig({ questionsLength, difficultyLevel }));
+    dispatch(
+      fetchQuizQuestions({ categoryId, questionsLength, difficultyLevel })
+    );
 
     playGameSound(buttonClick);
   };

@@ -7,7 +7,8 @@ const viewSlice = createSlice({
   initialState: INITIAL_VIEWS,
   reducers: {
     updateView(state, action) {
-      state.viewCount++;
+      if (action.payload !== "loading") state.viewCount++;
+
       state.previousView = state.currentView;
       state.currentView = action.payload;
     },
@@ -17,13 +18,18 @@ const viewSlice = createSlice({
 
       switch (state.previousView) {
         case "loading":
-          state.previousView = "setting";
+          state.currentView = "setting";
+          state.previousView = "category";
           break;
         case "setting":
           state.previousView = "category";
           break;
         case "category":
           state.previousView = null;
+          break;
+        case "quiz":
+          state.currentView = "setting";
+          state.previousView = "category";
           break;
         default:
           state.previousView = null;
