@@ -17,7 +17,7 @@ export const fetchQuizQuestions = quizConfig => {
       const quizQuestions = await fetchQuestions(quizConfig);
 
       dispatch(viewActions.updateView("quiz"));
-      dispatch(quizActions.updateQuiz(quizQuestions.results));
+      dispatch(quizActions.updateQuestions(quizQuestions.results));
     } catch (errors) {
       // TODO: Handle error logic
     }
