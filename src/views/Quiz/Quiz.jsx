@@ -26,7 +26,10 @@ const Quiz = () => {
   return (
     <Container className="quiz-container">
       <ProgressBar progressBarWidthPercentage={progressBarWidthPercentage} />
-      <QuestionProgress />
+      <QuestionProgress
+        questionNumber={questionNumber + 1}
+        totalQuestions={totalQuestions}
+      />
       <QuizBlock />
 
       <div className="quiz-footer">
