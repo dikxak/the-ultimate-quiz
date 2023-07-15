@@ -1,5 +1,4 @@
-const BASE_URL = "https://opentdb.com/api.php?";
-const QUIZ_TYPE = "multiple";
+import { BASE_URL, QUIZ_TYPE } from "@/constants/quiz";
 
 const getFinalQuizURL = ({ categoryId, questionsLength, difficultyLevel }) => {
   return `${BASE_URL}amount=${questionsLength}&category=${categoryId}&difficulty=${difficultyLevel}&type=${QUIZ_TYPE}`;

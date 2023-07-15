@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { useSelector } from "react-redux";
+
 import Button from "@/components/Button/Button";
 import Container from "@/components/Container/Container";
 
@@ -6,15 +9,34 @@ import QuestionProgress from "@/components/Quiz/QuestionProgress/QuestionProgres
 import QuizBlock from "@/components/Quiz/QuizBlock/QuizBlock";
 
 const Quiz = () => {
+  const { questions } = useSelector(state => state.quiz);
+
+  const [questionNumber, setQuestionNumber] = useState(0);
+
+  const totalQuestions = questions.length;
+  const progressBarWidthPercentage = `${(
+    ((questionNumber + 1) / totalQuestions) *
+    100
+  ).toFixed(4)}%`;
+
+  const handleQuestionNumberChange = () => {
+    setQuestionNumber(prevQuestionNum => ++prevQuestionNum);
+  };
+
   return (
     <Container className="quiz-container">
-      <ProgressBar />
+      <ProgressBar progressBarWidthPercentage={progressBarWidthPercentage} />
       <QuestionProgress />
       <QuizBlock />
 
       <div className="quiz-footer">
         <span className="quiz-timer">5 : 00</span>
-        <Button isPill size="medium" variant="outline">
+        <Button
+          onClick={handleQuestionNumberChange}
+          isPill
+          size="medium"
+          variant="outline"
+        >
           Next
         </Button>
       </div>
