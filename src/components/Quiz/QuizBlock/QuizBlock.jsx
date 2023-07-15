@@ -1,26 +1,33 @@
-const QuizBlock = () => {
+import PropTypes from "prop-types";
+
+import randomizeOptions from "@/utils/randomizeOptions";
+import getDecodedHtmlEntityValue from "@/utils/getDecodedHtmlEntityValue";
+
+const QuizBlock = ({ currentQuestion }) => {
+  const {
+    question,
+    incorrect_answers: incorrectAnswers,
+    correct_answer: correctAnswer,
+  } = currentQuestion;
+  const allOptions = [...incorrectAnswers, correctAnswer];
+  const randomOptions = randomizeOptions(allOptions);
+
   return (
     <div className="quiz-block">
-      <p className="question">
-        In the complex plane, multiplying a given function by i rotates it
-        anti-clockwise by how many degrees?
-      </p>
+      <p className="question">{getDecodedHtmlEntityValue(question)}</p>
       <ul className="options-list">
-        <li className="option" role="button" tabIndex={-1}>
-          Option 1
-        </li>
-        <li className="option" role="button" tabIndex={-1}>
-          Option 2
-        </li>
-        <li className="option active" role="button" tabIndex={-1}>
-          Option 3
-        </li>
-        <li className="option" role="button" tabIndex={-1}>
-          Option 4
-        </li>
+        {randomOptions.map(option => (
+          <li key={option} className="option" role="button" tabIndex={-1}>
+            {getDecodedHtmlEntityValue(option)}
+          </li>
+        ))}
       </ul>
     </div>
   );
+};
+
+QuizBlock.propTypes = {
+  currentQuestion: PropTypes.shape([PropTypes.shape({})]).isRequired,
 };
 
 export default QuizBlock;

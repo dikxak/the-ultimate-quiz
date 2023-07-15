@@ -13,6 +13,8 @@ const Quiz = () => {
 
   const [questionNumber, setQuestionNumber] = useState(0);
 
+  const currentQuestion = questions[questionNumber];
+
   const totalQuestions = questions.length;
   const progressBarWidthPercentage = `${(
     ((questionNumber + 1) / totalQuestions) *
@@ -30,7 +32,7 @@ const Quiz = () => {
         questionNumber={questionNumber + 1}
         totalQuestions={totalQuestions}
       />
-      <QuizBlock />
+      <QuizBlock currentQuestion={currentQuestion} />
 
       <div className="quiz-footer">
         <span className="quiz-timer">5 : 00</span>
