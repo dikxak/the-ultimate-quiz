@@ -10,6 +10,11 @@ import QuizBlock from "@/components/Quiz/QuizBlock/QuizBlock";
 
 import { quizActions } from "@/store/slices/quiz";
 
+const INITIAL_QUIZ_BLOCK_CLASS_NAMES = {
+  container: "",
+  child: "",
+};
+
 const Quiz = () => {
   const dispatch = useDispatch();
 
@@ -17,9 +22,15 @@ const Quiz = () => {
 
   const [questionNumber, setQuestionNumber] = useState(0);
   const [isOptionSelected, setIsOptionSelected] = useState(false);
+  const [gameTimer, setGameTimer] = useState({
+    second: 0,
+    minute: 2,
+  });
+  const [quizBlockClassNames, setQuizBlockClassNames] = useState(
+    INITIAL_QUIZ_BLOCK_CLASS_NAMES
+  );
 
   const currentQuestion = questions[questionNumber];
-
   const totalQuestions = questions.length;
   const progressBarWidthPercentage = `${(
     ((questionNumber + 1) / totalQuestions) *
@@ -28,11 +39,27 @@ const Quiz = () => {
 
   const handleQuestionNumberChange = () => {
     setQuestionNumber(prevQuestionNum => ++prevQuestionNum);
+    setIsOptionSelected(false);
+    setQuizBlockClassNames(INITIAL_QUIZ_BLOCK_CLASS_NAMES);
   };
 
   useEffect(() => {
     dispatch(quizActions.updateTotalScore(questions.length));
   }, [questions, dispatch]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setGameTimer(prevState => {
+        const { second, minute } = prevState;
+
+        if (second === 0) return { second: 59, minute: minute - 1 };
+
+        return { second: second - 1, minute };
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <Container className="quiz-container">
@@ -42,22 +69,26 @@ const Quiz = () => {
         totalQuestions={totalQuestions}
       />
       <QuizBlock
+        quizBlockClassNames={quizBlockClassNames}
+        setQuizBlockClassNames={setQuizBlockClassNames}
         currentQuestion={currentQuestion}
         setIsOptionSelected={setIsOptionSelected}
       />
 
       <div className="quiz-footer">
-        <span className="quiz-timer">5 : 00</span>
-        {isOptionSelected && (
-          <Button
-            onClick={handleQuestionNumberChange}
-            isPill
-            size="medium"
-            variant="outline"
-          >
-            Next
-          </Button>
-        )}
+        <span className="quiz-timer">
+          {gameTimer.minute} : {gameTimer.second.toString().padEnd(2, 0)}
+        </span>
+
+        <Button
+          isVisible={isOptionSelected}
+          onClick={handleQuestionNumberChange}
+          isPill
+          size="medium"
+          variant="outline"
+        >
+          Next
+        </Button>
       </div>
     </Container>
   );

@@ -10,7 +10,10 @@ const Button = ({
   className,
   onClick,
   type,
+  isVisible,
 }) => {
+  if (!isVisible) return null;
+
   const pillClassName = isPill ? `${BUTTON_CLASS_PREFIX}pill` : "";
   const variantClassName = `${BUTTON_CLASS_PREFIX}${variant}`;
   const sizeClassName = `${BUTTON_CLASS_PREFIX}${size}`;
@@ -34,6 +37,7 @@ Button.defaultProps = {
   type: "button",
   onClick: () => {},
   variant: "",
+  isVisible: true,
 };
 
 Button.propTypes = {
@@ -44,6 +48,7 @@ Button.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
   type: PropTypes.string,
+  isVisible: PropTypes.bool,
 };
 
 export default Button;

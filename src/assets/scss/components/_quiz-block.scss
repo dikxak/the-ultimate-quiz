@@ -21,6 +21,10 @@
     padding: 0;
     list-style: none;
 
+    &.disabled {
+      cursor: not-allowed;
+    }
+
     .option {
       width: 75%;
       padding: 0.75rem 1.5rem;
