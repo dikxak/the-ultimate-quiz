@@ -10,12 +10,14 @@ import speedoMeter from "@/assets/icons/speedo-meter.svg";
 import buttonClick from "@/assets/sounds/button-click.mp3";
 
 import playGameSound from "@/utils/playGameSound";
+import getGameTime from "@/utils/getGameTime";
 
 import { QUESTION_NUMBERS_OPTIONS } from "@/constants/settings";
 import { DIFFICULTY_LEVELS } from "@/constants/settings";
 import { INITIAL_CONFIG_VALUES } from "@/constants/config";
 
 import { fetchQuizQuestions } from "@/store/actions/quizActions";
+import { quizActions } from "@/store/slices/quiz";
 
 const Settings = () => {
   const dispatch = useDispatch();
@@ -32,8 +34,15 @@ const Settings = () => {
   const handleFormSubmit = e => {
     e.preventDefault();
 
+    const gameTime = getGameTime(difficultyLevel, +questionsLength);
+
+    dispatch(quizActions.updateQuizTime(gameTime));
     dispatch(
-      fetchQuizQuestions({ categoryId, questionsLength, difficultyLevel })
+      fetchQuizQuestions({
+        categoryId,
+        questionsLength,
+        difficultyLevel,
+      })
     );
 
     playGameSound(buttonClick);

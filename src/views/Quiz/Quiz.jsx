@@ -18,14 +18,13 @@ const INITIAL_QUIZ_BLOCK_CLASS_NAMES = {
 const Quiz = () => {
   const dispatch = useDispatch();
 
-  const { questions } = useSelector(state => state.quiz);
+  const {
+    questions,
+    time: { minutes, seconds },
+  } = useSelector(state => state.quiz);
 
   const [questionNumber, setQuestionNumber] = useState(0);
   const [isOptionSelected, setIsOptionSelected] = useState(false);
-  const [gameTimer, setGameTimer] = useState({
-    second: 0,
-    minute: 2,
-  });
   const [quizBlockClassNames, setQuizBlockClassNames] = useState(
     INITIAL_QUIZ_BLOCK_CLASS_NAMES
   );
@@ -49,17 +48,18 @@ const Quiz = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setGameTimer(prevState => {
-        const { second, minute } = prevState;
+      if (seconds === 0)
+        return dispatch(
+          quizActions.updateQuizTime({ seconds: 59, minutes: minutes - 1 })
+        );
 
-        if (second === 0) return { second: 59, minute: minute - 1 };
-
-        return { second: second - 1, minute };
-      });
+      return dispatch(
+        quizActions.updateQuizTime({ seconds: seconds - 1, minutes })
+      );
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [dispatch, minutes, seconds]);
 
   return (
     <Container className="quiz-container">
@@ -77,7 +77,7 @@ const Quiz = () => {
 
       <div className="quiz-footer">
         <span className="quiz-timer">
-          {gameTimer.minute} : {gameTimer.second.toString().padEnd(2, 0)}
+          {minutes} : {seconds.toString().padEnd(2, 0)}
         </span>
 
         <Button
