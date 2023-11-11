@@ -37,6 +37,7 @@ const Settings = () => {
     const gameTime = getGameTime(difficultyLevel, +questionsLength);
 
     dispatch(quizActions.updateQuizTime(gameTime));
+    dispatch(quizActions.resetGameScores());
     dispatch(
       fetchQuizQuestions({
         categoryId,
