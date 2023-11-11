@@ -23,7 +23,7 @@ const quizSlice = createSlice({
     updateQuizTime(state, action) {
       state.time = action.payload;
     },
-    resetGameScores(state) {
+    resetScores(state) {
       state.score = 0;
       state.totalScore = 0;
     },

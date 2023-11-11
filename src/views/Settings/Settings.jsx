@@ -16,8 +16,8 @@ import { QUESTION_NUMBERS_OPTIONS } from "@/constants/settings";
 import { DIFFICULTY_LEVELS } from "@/constants/settings";
 import { INITIAL_CONFIG_VALUES } from "@/constants/config";
 
-import { fetchQuizQuestions } from "@/store/actions/quizActions";
 import { quizActions } from "@/store/slices/quiz";
+import { fetchQuizQuestions } from "@/store/actions/quizActions";
 
 const Settings = () => {
   const dispatch = useDispatch();
@@ -37,7 +37,8 @@ const Settings = () => {
     const gameTime = getGameTime(difficultyLevel, +questionsLength);
 
     dispatch(quizActions.updateQuizTime(gameTime));
-    dispatch(quizActions.resetGameScores());
+    dispatch(quizActions.resetScores());
+
     dispatch(
       fetchQuizQuestions({
         categoryId,
