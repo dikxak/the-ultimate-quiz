@@ -6,6 +6,7 @@ import CategoryMenu from "@/views/CategoryMenu/CategoryMenu";
 import Settings from "@/views/Settings/Settings";
 import Loading from "@/views/Loading/Loading";
 import Quiz from "@/views/Quiz/Quiz";
+import Error from "@/views/Error/Error";
 
 const GameView = ({ isGameStarted }) => {
   const { currentView } = useSelector(state => state.view);
@@ -21,6 +22,8 @@ const GameView = ({ isGameStarted }) => {
       return <Loading />;
     case "quiz":
       return <Quiz />;
+    case "error":
+      return <Error />;
     default:
       return null;
   }

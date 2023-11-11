@@ -15,7 +15,7 @@ import { viewActions } from "@/store/slices/view";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { viewCount } = useSelector(state => state.view);
+  const { previousView } = useSelector(state => state.view);
 
   const [isGameStarted, setIsGameStarted] = useState(false);
 
@@ -31,12 +31,12 @@ const App = () => {
     playGameSound(buttonClick);
   };
 
-  const gameHeadingClassName = viewCount > 1 ? "mr-auto" : "";
+  const gameHeadingClassName = previousView !== null ? "mr-auto" : "";
 
   return (
     <>
       <div className="navbar">
-        {viewCount > 1 && (
+        {previousView !== null && (
           <Button
             onClick={handleBack}
             size="small"

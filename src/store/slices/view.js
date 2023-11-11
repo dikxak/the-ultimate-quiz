@@ -7,14 +7,11 @@ const viewSlice = createSlice({
   initialState: INITIAL_VIEWS,
   reducers: {
     updateView(state, action) {
-      if (action.payload !== "loading") state.viewCount++;
-
       state.previousView = state.currentView;
       state.currentView = action.payload;
     },
     updateViewOnBack(state) {
       state.currentView = state.previousView;
-      state.viewCount--;
 
       switch (state.previousView) {
         case "loading":
@@ -34,6 +31,10 @@ const viewSlice = createSlice({
         default:
           state.previousView = null;
       }
+    },
+    updateViewOnError(state, action) {
+      state.currentView = "error";
+      state.errorMessage = action.payload.errorMessage;
     },
   },
 });

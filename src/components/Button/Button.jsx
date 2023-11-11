@@ -14,11 +14,11 @@ const Button = ({
 }) => {
   if (!isVisible) return null;
 
-  const pillClassName = isPill ? `${BUTTON_CLASS_PREFIX}pill` : "";
-  const variantClassName = `${BUTTON_CLASS_PREFIX}${variant}`;
-  const sizeClassName = `${BUTTON_CLASS_PREFIX}${size}`;
+  const pillClassName = isPill ? `${BUTTON_CLASS_PREFIX}pill ` : "";
+  const variantClassName = variant ? `${BUTTON_CLASS_PREFIX}${variant} ` : "";
+  const sizeClassName = size ? `${BUTTON_CLASS_PREFIX}${size}` : "";
 
-  const btnClasses = `${pillClassName} ${variantClassName} ${sizeClassName}`;
+  const btnClasses = `${pillClassName}${variantClassName}${sizeClassName}`;
 
   return (
     <button

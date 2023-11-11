@@ -16,10 +16,25 @@ export const fetchQuizQuestions = quizConfig => {
 
       const quizQuestions = await fetchQuestions(quizConfig);
 
+      if (!quizQuestions.results.length) {
+        dispatch(
+          viewActions.updateViewOnError({
+            errorMessage:
+              "There are not enough questions for this category. Please select another question length to play the game.",
+          })
+        );
+
+        return;
+      }
+
       dispatch(viewActions.updateView("quiz"));
       dispatch(quizActions.updateQuestions(quizQuestions.results));
     } catch (errors) {
-      // TODO: Handle error logic
+      dispatch(
+        viewActions.updateViewOnError({
+          errorMessage: "Something went wrong. Please try again!",
+        })
+      );
     }
   };
 };

@@ -68,7 +68,10 @@ const QuizBlock = ({
 QuizBlock.propTypes = {
   currentQuestion: PropTypes.shape([PropTypes.shape({})]).isRequired,
   setIsOptionSelected: PropTypes.func.isRequired,
-  quizBlockClassNames: PropTypes.string.isRequired,
+  quizBlockClassNames: PropTypes.shape({
+    container: PropTypes.string,
+    child: PropTypes.string,
+  }).isRequired,
   setQuizBlockClassNames: PropTypes.func.isRequired,
 };
 
