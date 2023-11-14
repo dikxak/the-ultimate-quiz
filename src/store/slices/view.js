@@ -36,6 +36,13 @@ const viewSlice = createSlice({
       state.currentView = "error";
       state.errorMessage = action.payload.errorMessage;
     },
+    resetView(state) {
+      const { errorMessage, previousView } = INITIAL_VIEWS;
+
+      state.currentView = "category";
+      state.errorMessage = errorMessage;
+      state.previousView = previousView;
+    },
   },
 });
 

@@ -9,11 +9,19 @@ import QuestionProgress from "@/components/Quiz/QuestionProgress/QuestionProgres
 import QuizBlock from "@/components/Quiz/QuizBlock/QuizBlock";
 
 import { quizActions } from "@/store/slices/quiz";
+import { viewActions } from "@/store/slices/view";
+
+import playGameSound from "@/utils/playGameSound";
+
+import gameWinSound from "@/assets/sounds/game-win.mp3";
+import buttonClickSound from "@/assets/sounds/button-click.mp3";
 
 const INITIAL_QUIZ_BLOCK_CLASS_NAMES = {
   container: "",
   child: "",
 };
+
+const PASS_PERCENTAGE = 40;
 
 const Quiz = () => {
   const dispatch = useDispatch();
@@ -21,7 +29,9 @@ const Quiz = () => {
   const {
     questions,
     time: { minutes, seconds },
-  } = useSelector(state => state.quiz);
+    score,
+    totalScore,
+  } = useSelector(({ quiz }) => quiz);
 
   const [questionNumber, setQuestionNumber] = useState(0);
   const [isOptionSelected, setIsOptionSelected] = useState(false);
@@ -37,6 +47,7 @@ const Quiz = () => {
   ).toFixed(4)}%`;
 
   const handleQuestionNumberChange = () => {
+    playGameSound(buttonClickSound);
     setQuestionNumber(prevQuestionNum => ++prevQuestionNum);
     setIsOptionSelected(false);
     setQuizBlockClassNames(INITIAL_QUIZ_BLOCK_CLASS_NAMES);
@@ -61,6 +72,22 @@ const Quiz = () => {
     return () => clearInterval(timer);
   }, [dispatch, minutes, seconds]);
 
+  const isGameOver =
+    (seconds === 0 && minutes === 0) || questionNumber === totalQuestions;
+
+  useEffect(() => {
+    const scorePercentage = ((score / totalScore) * 100).toFixed(2);
+
+    if (isGameOver) {
+      if (scorePercentage >= PASS_PERCENTAGE) {
+        dispatch(viewActions.updateView("winner"));
+        playGameSound(gameWinSound);
+      } else dispatch(viewActions.updateView("loser"));
+    }
+  }, [isGameOver, score, totalScore, dispatch]);
+
+  if (isGameOver) return null;
+
   return (
     <Container className="quiz-container">
       <ProgressBar progressBarWidthPercentage={progressBarWidthPercentage} />
@@ -77,7 +104,7 @@ const Quiz = () => {
 
       <div className="quiz-footer">
         <span className="quiz-timer">
-          {minutes} : {seconds.toString().padEnd(2, 0)}
+          {minutes} : {seconds.toString().padStart(2, 0)}
         </span>
 
         <Button
