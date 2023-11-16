@@ -8,6 +8,7 @@ import Loading from "@/views/Loading/Loading";
 import Quiz from "@/views/Quiz/Quiz";
 import Error from "@/views/Error/Error";
 import Winner from "@/views/Winner/Winner";
+import Loser from "@/views/Loser/Loser";
 
 const GameView = ({ isGameStarted }) => {
   const { currentView } = useSelector(state => state.view);
@@ -27,6 +28,8 @@ const GameView = ({ isGameStarted }) => {
       return <Error />;
     case "winner":
       return <Winner />;
+    case "loser":
+      return <Loser />;
     default:
       return null;
   }

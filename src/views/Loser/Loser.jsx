@@ -1,14 +1,14 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Container from "@/components/Container/Container";
 import Button from "@/components/Button/Button";
 
-import trophy from "@/assets/images/trophy.png";
+import thumbsDown from "@/assets/images/thumbs-down.png";
 
 import { viewActions } from "@/store/slices/view";
 import { quizActions } from "@/store/slices/quiz";
 
-const Winner = () => {
+const Loser = () => {
   const dispatch = useDispatch();
 
   const { score, totalScore } = useSelector(({ quiz }) => quiz);
@@ -21,10 +21,10 @@ const Winner = () => {
   };
 
   return (
-    <Container className="winner-container">
-      <span className="winner-text">🎉🎉 Winner 🎉🎉</span>
+    <Container className="loser-container">
+      <span className="loser-text">You Lost 🤨</span>
 
-      <img className="trophy-img" src={trophy} alt="Trophy" />
+      <img className="thumbs-down-img" src={thumbsDown} alt="Thumbs Down" />
 
       <p className="score-description">
         You scored <strong>{score}</strong> out of{" "}
@@ -39,10 +39,10 @@ const Winner = () => {
         size="medium"
         isPill={true}
       >
-        Play Again
+        Try Again
       </Button>
     </Container>
   );
 };
 
-export default Winner;
+export default Loser;

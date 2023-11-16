@@ -14,6 +14,7 @@ import { viewActions } from "@/store/slices/view";
 import playGameSound from "@/utils/playGameSound";
 
 import gameWinSound from "@/assets/sounds/game-win.mp3";
+import gameLoseSound from "@/assets/sounds/game-lose.mp3";
 import buttonClickSound from "@/assets/sounds/button-click.mp3";
 
 const INITIAL_QUIZ_BLOCK_CLASS_NAMES = {
@@ -82,7 +83,10 @@ const Quiz = () => {
       if (scorePercentage >= PASS_PERCENTAGE) {
         dispatch(viewActions.updateView("winner"));
         playGameSound(gameWinSound);
-      } else dispatch(viewActions.updateView("loser"));
+      } else {
+        dispatch(viewActions.updateView("loser"));
+        playGameSound(gameLoseSound);
+      }
     }
   }, [isGameOver, score, totalScore, dispatch]);
 
